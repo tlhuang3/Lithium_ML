@@ -1,0 +1,23 @@
+#! /bin/bash
+
+dir_counter_start=3
+dir_counter2_start=1
+subs_base_dir="substitutional_"
+vac_base_dir="vacancy"
+ele="C"
+
+dir_counter=$dir_counter_start
+dir_counter2=$dir_counter2_start
+while [ $dir_counter -le 6 ]
+do
+  next_dir="${subs_base_dir}${ele}${dir_counter}"
+  cd $next_dir
+  echo "working in $next_dir"
+#  cp total_energy_new.out setup_SE.out
+#  sed -i "s/config/config /g" setup_SE.out
+#  sed -i "s/\/slurm/ \/slurm/g" setup_SE.out
+#  sed -i "s/_${ele}${dir_counter}_/ ${ele}${dir_counter} /g" setup_SE.out
+  awk -v dir_counter="$dir_counter" '{print "sub"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - ((-411.32474039) - dir_counter*(-0.73457933) + dir_counter*(-10.68448429)))" ""eV"}' setup_SE.out >surface_energy_sub${ele}${dir_counter}.out
+  cd ../
+  ((dir_counter +=1))
+done
