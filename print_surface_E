@@ -1,0 +1,26 @@
+# interstitial_C3
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 3*(-10.68448429))" ""eV"}' setup_SE.out >surface_energy_intC3.out
+
+# interstitial_C4
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 4*(-10.68448429))" ""eV"}' setup_SE.out >surface_energy_intC4.out
+
+# interstitial_C5
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 5*(-10.68448429))" ""eV"}' setup_SE.out >surface_energy_intC5.out
+
+# interstitial_C6
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 6*(-10.68448429))" ""eV"}' setup_SE.out >surface_energy_intC6.out
+
+# interstitial_O3
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 3*(-31.42533712))" ""eV"}' setup_SE.out >surface_energy_intO3.out
+
+# interstitial_O4
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 4*(-31.42533712))" ""eV"}' setup_SE.out >surface_energy_intO4.out
+
+# interstitial_O5
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 5*(-31.42533712))" ""eV"}' setup_SE.out >surface_energy_intO5.out
+
+# interstitial_O6
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 6*(-31.42533712))" ""eV"}' setup_SE.out >surface_energy_intO6.out
+
+# substitutional_C3
+awk '{print "sub"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - ((-411.32474039) - 3*(-0.73457933)+3*(-10.68448429)))" ""eV"}' setup_SE.out >surface_energy_subC3.out
