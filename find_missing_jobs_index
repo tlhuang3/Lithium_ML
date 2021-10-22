@@ -1,0 +1,6 @@
+To find the failed jobs, first sort the numbers in temp.out with
+:%!sort -n -k 2
+Then use the following to find the missing numbers from the sequence.
+awk 'p && p != $2 { for( i = p; i < $2; i++ ) print i; } {p = $2 + 1 }' temp.out >miss.out
+
+awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 4*(-31.42533712))" ""eV"}' setup_SE.out >surface_energy_intO4.out
