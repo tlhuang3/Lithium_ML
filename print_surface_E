@@ -1,3 +1,7 @@
+#Inside Vim editor
+# :%s/\/slurm/ \/slurm/g
+# :%s/config/config /g
+
 # interstitial_C3
 awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 3*(-10.68448429))" ""eV"}' setup_SE.out >surface_energy_intC3.out
 
@@ -21,6 +25,34 @@ awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32
 
 # interstitial_O6
 awk '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - 6*(-31.42533712))" ""eV"}' setup_SE.out >surface_energy_intO6.out
+
+# interstitial_N
+# After setting the columns in file setup_SE.out, we could use the following script
+#! /bin/bash
+  
+dir_counter_start=3
+dir_counter2_start=1
+subs_base_dir="substitutional_"
+vac_base_dir="vacancy"
+ele="N"
+int_base_dir="interstitial_"
+
+dir_counter=$dir_counter_start
+dir_counter2=$dir_counter2_start
+while [ $dir_counter -le 6 ]
+do
+  next_dir="${int_base_dir}${ele}${dir_counter}"
+  cd $next_dir
+  echo "working in $next_dir"
+#  cp total_energy_new.out setup_SE.out
+#  sed -i "s/config/config /g" setup_SE.out
+#  sed -i "s/\/slurm/ \/slurm/g" setup_SE.out
+#  sed -i "s/_${ele}${dir_counter}_/ ${ele}${dir_counter} /g" setup_SE.out
+  awk -v dir_counter="$dir_counter" '{print "int"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - (-411.32474039) - dir_counter*(-19.23583200))" ""eV"}' setup_SE.out >surface_energy_int${ele}${dir_counter}.out
+  cd ../
+  ((dir_counter +=1))
+done
+
 
 # substitutional_C3
 awk '{print "sub"$2"_"$4"   ""surface_energy""   "13.605662285137*($9 - ((-411.32474039) - 3*(-0.73457933)+3*(-10.68448429)))" ""eV"}' setup_SE.out >surface_energy_subC3.out
